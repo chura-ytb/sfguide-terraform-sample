@@ -1,14 +1,14 @@
 terraform {
   required_providers {
     snowflake = {
-      source = "Snowflake-Labs/snowflake"
+      source = "snowflakedb/snowflake"
     }
   }
 }
 
 locals {
   organization_name = "chura"
-  account_name      = "churad_data"
+  account_name      = "chura_data"
   private_key_path  = "~/.ssh/tobi_training_service.p8"
 }
 
@@ -17,7 +17,7 @@ provider "snowflake" {
     organization_name = local.organization_name
     account_name      = local.account_name
     user              = "tobi_training_service"
-    role              = "tobi_training_role"
+    role              = "sysadmin"
     authenticator     = "SNOWFLAKE_JWT"
     private_key       = file(local.private_key_path)
 }
@@ -25,12 +25,12 @@ provider "snowflake" {
 
 
 resource "snowflake_database" "tf_db" {
-  name         = "tobi_tfdemo_db"
+  name         = "TOBI_TFDEMO_DB"
   is_transient = false
 }
 
 resource "snowflake_warehouse" "tf_warehouse" {
-  name                      = "tobi_tfdemo_wh"
+  name                      = "TOBI_TFDEMO_WH"
   warehouse_type            = "STANDARD"
   warehouse_size            = "XSMALL"
   max_cluster_count         = 1
