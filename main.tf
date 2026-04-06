@@ -9,7 +9,7 @@ terraform {
 locals {
   organization_name = "chura"
   account_name      = "churad_data"
-  private_key_path  = "./tobi_training_service.p8"
+  private_key_path  = "~/.ssh/tobi_training_service.p8"
 }
 
 
